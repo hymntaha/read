@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-import { IsEmail, Min } from "class-validator";
+import { IsEmail, Length } from "class-validator";
 
 @Entity("users")
 export class User extends BaseEntity {
@@ -25,12 +25,12 @@ export class User extends BaseEntity {
   email: string;
 
   @Index()
-  @Min(3, { message: "Username must be at least 3 characters long" })
+  @Length(3, 255, { message: "Username must be at least 3 characters long" })
   @Column({ unique: true })
   username: string;
 
   @Column()
-  @Min(6)
+  @Length(6, 255)
   password: string;
 
   @CreateDateColumn()
