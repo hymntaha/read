@@ -6,9 +6,11 @@ import {
   Index,
   CreateDateColumn,
   UpdateDateColumn,
+  BeforeInsert,
 } from "typeorm";
 
 import { IsEmail, Length } from "class-validator";
+import bcrypt from "bcrypt";
 
 @Entity("users")
 export class User extends BaseEntity {
@@ -30,7 +32,7 @@ export class User extends BaseEntity {
   username: string;
 
   @Column()
-  @Length(6, 255)
+  @Length(6)
   password: string;
 
   @CreateDateColumn()
@@ -38,4 +40,9 @@ export class User extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 6);
+  }
 }
