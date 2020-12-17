@@ -71,11 +71,24 @@ const login = async (req: Request, res: Response) => {
     );
 
     return res.json(user);
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+    return res.status(401).json({ error: "Unauthenticated" });
+  }
+};
+
+const me = (req: Request, res: Response) => {
+  try {
+    return res.json({});
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({ error: "Unauthenticated" });
+  }
 };
 
 const router = Router();
 router.post("/register", register);
 router.post("/login", login);
+router.get("/me", me);
 
 export default router;
