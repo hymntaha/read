@@ -1,12 +1,14 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { User } from "./entities/User";
+import express from "express";
 import morgan from "morgan";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 import authRoutes from "./routes/auth";
 
 import trim from "./middleware/trim";
-
-import express from "express";
 
 const app = express();
 

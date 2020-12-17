@@ -57,13 +57,13 @@ const login = async (req: Request, res: Response) => {
       return res.status(401).json({ password: "Password is incorrect" });
     }
 
-    const token = jwt.sign({ username }, "34rwdfsd24dswfdsfs324dsfsd3sdfsdf");
+    const token = jwt.sign({ username }, process.env.JWT_SECRET);
 
     res.set(
       "Set-Cookie",
       cookie.serialize("token", token, {
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
         maxAge: 3600,
         path: "/",
