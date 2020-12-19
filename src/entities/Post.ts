@@ -4,30 +4,28 @@ import { IsEmail, Length } from "class-validator";
 import bcrypt from "bcrypt";
 import { Exclude } from "class-transformer";
 import Entity from "./Entity";
-@TOEntity("users")
-export class User extends Entity {
-  constructor(user: Partial<User>) {
+
+@TOEntity("posts")
+export default class Post extends Entity {
+  constructor(post: Partial<Post>) {
     super();
-    Object.assign(this, user);
+    Object.assign(this, post);
   }
 
   @Index()
-  @IsEmail()
-  @Column({ unique: true })
-  email: string;
-
-  @Index()
-  @Length(3, 255, { message: "Username must be at least 3 characters long" })
-  @Column({ unique: true })
-  username: string;
-
-  @Exclude()
   @Column()
-  @Length(6)
-  password: string;
+  identifier: string; // 7 character Id
 
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 6);
-  }
+  @Column()
+  title: string;
+
+  @Index()
+  @Column()
+  slug: string;
+
+  @Column({ nullable: true, type: "text" })
+  body: string;
+
+  @Column()
+  subName: string;
 }
