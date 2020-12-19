@@ -4,6 +4,7 @@ import {
   Index,
   BeforeInsert,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 import { IsEmail, Length } from "class-validator";
@@ -37,5 +38,6 @@ export default class Post extends Entity {
   subName: string;
 
   @ManyToOne(() => User, (user) => user.posts)
+  @JoinColumn({ name: "username", referencedColumnName: "username" })
   user: User;
 }
