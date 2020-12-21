@@ -2,15 +2,11 @@ import {
   Entity as TOEntity,
   Column,
   Index,
-  BeforeInsert,
   ManyToOne,
   JoinColumn,
   OneToMany,
 } from "typeorm";
 
-import { IsEmail, Length } from "class-validator";
-import bcrypt from "bcrypt";
-import { Exclude } from "class-transformer";
 import Entity from "./Entity";
 import User from "./User";
 import { makeId, slugify } from "../util/helper";
