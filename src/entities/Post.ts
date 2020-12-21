@@ -12,6 +12,7 @@ import bcrypt from "bcrypt";
 import { Exclude } from "class-transformer";
 import Entity from "./Entity";
 import User from "./User";
+import { makeId, slugify } from "../util/helper";
 
 @TOEntity("posts")
 export default class Post extends Entity {
@@ -40,4 +41,10 @@ export default class Post extends Entity {
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn({ name: "username", referencedColumnName: "username" })
   user: User;
+
+  @BeforeInsert()
+  makeIdAndSlug() {
+    this.identifier = makeId(7);
+    this.slug = slugify(this.title);
+  }
 }
