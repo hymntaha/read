@@ -45,7 +45,7 @@ export default class Post extends Entity {
 
   @ManyToOne(() => Sub, (sub) => sub.posts)
   @JoinColumn({ name: "subName", referencedColumnName: "name" })
-  sub: User;
+  sub: Sub;
 
   @BeforeInsert()
   makeIdAndSlug() {
