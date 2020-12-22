@@ -11,6 +11,7 @@ import bcrypt from "bcrypt";
 import { Exclude } from "class-transformer";
 import Entity from "./Entity";
 import Post from "./Post";
+
 @TOEntity("users")
 export default class User extends Entity {
   constructor(user: Partial<User>) {
