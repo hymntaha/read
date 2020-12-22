@@ -74,7 +74,7 @@ const login = async (req: Request, res: Response) => {
     return res.json(user);
   } catch (err) {
     console.log(err);
-    return res.status(401).json({ error: "Unauthenticated" });
+    return res.status(401).json({ error: "Something went wrong" });
   }
 };
 
