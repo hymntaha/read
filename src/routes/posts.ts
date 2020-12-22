@@ -57,10 +57,15 @@ const getPost = async (req: Request, res: Response) => {
   }
 };
 
+const commentOnPost = async (req: Request, res: Response) => {
+  const { identifier, slug } = req.params;
+};
+
 const router = Router();
 
 router.post("/", auth, createPost);
 router.get("/", getPosts);
 router.get("/:identifier/:slug", getPost);
+router.post("/:identifier/:slug/comments", commentOnPost);
 
 export default router;
