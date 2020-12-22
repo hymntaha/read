@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express from "express";
-// import morgan from "morgan";
+import morgan from "morgan";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 app.use(trim);
 app.use(cookieParser());

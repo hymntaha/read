@@ -1,4 +1,12 @@
-import { Column, Entity as TOEntity, JoinColumn, ManyToOne } from "typeorm";
+import {
+  BeforeInsert,
+  Column,
+  Entity as TOEntity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+} from "typeorm";
+import { makeId } from "../util/helper";
 import Entity from "./Entity";
 import Post from "./Post";
 import User from "./User";
@@ -10,6 +18,7 @@ export default class Comment extends Entity {
     Object.assign(this, comment);
   }
 
+  @Index()
   @Column()
   identifier: string;
 
@@ -25,4 +34,9 @@ export default class Comment extends Entity {
 
   @ManyToOne(() => Post, (post) => post.comments)
   post: Post;
+
+  @BeforeInsert()
+  makeIdAndSlug() {
+    this.identifier = makeId(8);
+  }
 }
