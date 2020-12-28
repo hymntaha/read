@@ -52,6 +52,9 @@ export default function Home() {
                 placeholder="password"
               />
             </div>
+            <button className="w-full py-2 mb-4 text-xs font-bold text-white uppercase bg-blue-500 border rounded border-blue 500">
+              Sign Up
+            </button>
           </form>
         </div>
       </div>
