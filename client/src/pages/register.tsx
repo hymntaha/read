@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -56,6 +57,12 @@ export default function Home() {
               Sign Up
             </button>
           </form>
+          <small>
+            Already a member?
+            <Link href="/login">
+              <a className="ml-1 uppercase text-blue">Log In</a>
+            </Link>
+          </small>
         </div>
       </div>
     </div>
