@@ -38,6 +38,20 @@ export default function Home() {
                 placeholder="Email"
               />
             </div>
+            <div className="mb-2">
+              <input
+                type="text"
+                className="w-full px-3 py-2 bg-gray-100 border border-gray-400 rounded"
+                placeholder="username"
+              />
+            </div>
+            <div className="mb-2">
+              <input
+                type="password"
+                className="w-full px-3 py-2 bg-gray-100 border border-gray-400 rounded"
+                placeholder="password"
+              />
+            </div>
           </form>
         </div>
       </div>
