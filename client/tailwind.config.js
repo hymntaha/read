@@ -2,6 +2,9 @@ module.exports = {
   purge: ["./src/**/*.tsx", "./components/**/*.js"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily: {
+      body: ["IBM Plex Sans"],
+    },
     extend: {
       colors: {
         blue: {
