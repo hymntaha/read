@@ -27,7 +27,13 @@ const register = async (req: Request, res: Response) => {
     errors = await validate(user);
 
     if (errors.length > 0) {
-      return res.status(400).json({ errors });
+      let mappedErrors: any = {};
+      errors.forEach((e: any) => {
+        const key = e.property;
+        const value = Object.entries(e.constraints[0][1]);
+        mappedErrors[key] = value;
+      });
+      return res.status(400).json({ mappedErrors });
     }
     return res.json(user);
   } catch (err) {
