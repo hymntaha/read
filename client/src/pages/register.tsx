@@ -12,7 +12,7 @@ export default function Home() {
 
       <div
         className="h-screen bg-center bg-cover w-36"
-        style={{ backgroundImage: "url('/images/bricks.jpg)" }}
+        style={{ backgroundImage: "url('/images/bricks.jpg')" }}
       ></div>
       <div className="flex flex-col justify-center pl-6">
         <div className="w-70">
@@ -35,22 +35,22 @@ export default function Home() {
             <div className="mb-2">
               <input
                 type="email"
-                className="w-full px-3 py-2 bg-gray-100 border border-gray-400 rounded"
-                placeholder="Email"
+                className="w-full p-3 py-2 border border-gray-400 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
+                placeholder="EMAIL"
               />
             </div>
             <div className="mb-2">
               <input
                 type="text"
-                className="w-full px-3 py-2 bg-gray-100 border border-gray-400 rounded"
-                placeholder="username"
+                className="w-full p-3 py-2 border border-gray-400 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
+                placeholder="USERNAME"
               />
             </div>
             <div className="mb-2">
               <input
                 type="password"
-                className="w-full px-3 py-2 bg-gray-100 border border-gray-400 rounded"
-                placeholder="password"
+                className="w-full p-3 py-2 border border-gray-400 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
+                placeholder="PASSWORD"
               />
             </div>
             <button className="w-full py-2 mb-4 text-xs font-bold text-white uppercase bg-blue-500 border rounded border-blue 500">
