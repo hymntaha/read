@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import Axios from "axios";
+
 export default function Home() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -10,6 +12,19 @@ export default function Home() {
   const [agreement, setAgreement] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
+  const submitForm = async (event: FormEvent) => {
+    event.preventDefault();
+    try {
+      const res = await Axios.post("/auth/register", {
+        email,
+        username,
+        password,
+      });
+    } catch (error) {
+      console.log(error);
+      setErrors(error.response.data);
+    }
+  };
   return (
     <div className="flex">
       <Head>
@@ -28,12 +43,14 @@ export default function Home() {
           <p className="mb-10 text-sm">
             By continiuing you agree to our User Agreement and Privacy Policy
           </p>
-          <form action="">
+          <form onSubmit={submitForm}>
             <div className="mb-6">
               <input
                 type="checkbox"
                 className="mr-1 cursor-pointer"
                 id="agreement"
+                checked={agreement}
+                onChange={(e) => setAgreement(e.target.checked)}
               />
               <label htmlFor="agreemetn" className="text-xs cursor-pointer">
                 I agree to get emails about cool stuff on Readit
@@ -44,6 +61,8 @@ export default function Home() {
                 type="email"
                 className="w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
                 placeholder="EMAIL"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="mb-2">
@@ -51,6 +70,8 @@ export default function Home() {
                 type="text"
                 className="w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
                 placeholder="USERNAME"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="mb-2">
@@ -58,6 +79,8 @@ export default function Home() {
                 type="password"
                 className="w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
                 placeholder="PASSWORD"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button className="w-full py-2 mb-4 text-xs font-bold text-white uppercase bg-blue-500 border rounded border-blue 500">
