@@ -4,6 +4,12 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [agreement, setAgreement] = useState(false);
+  const [errors, setErrors] = useState<any>({});
+
   return (
     <div className="flex">
       <Head>
