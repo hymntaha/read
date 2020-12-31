@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Axios from "axios";
 import classNames from "classnames";
+import InputGroup from "../components/InputGroup";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -57,37 +58,31 @@ export default function Home() {
                 I agree to get emails about cool stuff on Readit
               </label>
             </div>
-            <div className="mb-2">
-              <input
-                type="email"
-                className={classNames(
-                  "w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white",
-                  { "border-red-500": errors.email }
-                )}
-                placeholder="EMAIL"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <small className="font-medium text-red-600">{errors.email}</small>
-            </div>
-            <div className="mb-2">
-              <input
-                type="text"
-                className="w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
-                placeholder="USERNAME"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="mb-2">
-              <input
-                type="password"
-                className="w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
-                placeholder="PASSWORD"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            <InputGroup
+              type="email"
+              className="mb-2"
+              value={email}
+              setValue={setEmail}
+              placeholder="EMAIL"
+              error={errors.email}
+            />
+            <InputGroup
+              type="text"
+              className="mb-2"
+              value={username}
+              setValue={setUsername}
+              placeholder="USERNAME"
+              error={errors.username}
+            />
+            <InputGroup
+              type="password"
+              className="mb-4"
+              value={password}
+              setValue={setPassword}
+              placeholder="PASSWORD"
+              error={errors.password}
+            />
+
             <button className="w-full py-2 mb-4 text-xs font-bold text-white uppercase bg-blue-500 border rounded border-blue 500">
               Sign Up
             </button>
