@@ -4,6 +4,8 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Axios from "axios";
+import { useRouter } from "next/router";
+
 import classNames from "classnames";
 import InputGroup from "../components/InputGroup";
 
@@ -14,16 +16,22 @@ export default function Home() {
   const [agreement, setAgreement] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
+  const router = useRouter();
   const submitForm = async (event: FormEvent) => {
     event.preventDefault();
+    if (!agreement) {
+      setErrors({ ...errors, agreement: "You must agree to T&Cs" });
+      return;
+    }
     try {
-      const res = await Axios.post("/auth/register", {
+      await Axios.post("/auth/register", {
         email,
         username,
         password,
       });
+
+      router.push("/login");
     } catch (error) {
-      console.log(error);
       setErrors(error.response.data);
     }
   };
@@ -54,9 +62,15 @@ export default function Home() {
                 checked={agreement}
                 onChange={(e) => setAgreement(e.target.checked)}
               />
-              <label htmlFor="agreemetn" className="text-xs cursor-pointer">
+              <label
+                htmlFor="agreement"
+                className="block text-xs cursor-pointer"
+              >
                 I agree to get emails about cool stuff on Readit
               </label>
+              <small className="font-medium text-red-600">
+                {errors.agreement}
+              </small>
             </div>
             <InputGroup
               type="email"
