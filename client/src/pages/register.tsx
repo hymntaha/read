@@ -4,6 +4,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Axios from "axios";
+import classNames from "classnames";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -59,7 +60,10 @@ export default function Home() {
             <div className="mb-2">
               <input
                 type="email"
-                className="w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white"
+                className={classNames(
+                  "w-full p-3 py-2 duration-200 border border-gray-300 rounded outline-none bg-gray-50 focus:bg-white hover:bg-white",
+                  { "border-red-500": errors.email }
+                )}
                 placeholder="EMAIL"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
