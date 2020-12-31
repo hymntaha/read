@@ -41,38 +41,12 @@ export default function Home() {
       ></div>
       <div className="flex flex-col justify-center pl-6">
         <div className="w-70">
-          <h1 className="mb-2 text-lg">Sign Up</h1>
+          <h1 className="mb-2 text-lg">Login</h1>
 
           <p className="mb-10 text-sm">
             By continiuing you agree to our User Agreement and Privacy Policy
           </p>
           <form onSubmit={submitForm}>
-            <div className="mb-6">
-              <input
-                type="checkbox"
-                className="mr-1 cursor-pointer"
-                id="agreement"
-                checked={agreement}
-                onChange={(e) => setAgreement(e.target.checked)}
-              />
-              <label
-                htmlFor="agreement"
-                className="block text-xs cursor-pointer"
-              >
-                I agree to get emails about cool stuff on Readit
-              </label>
-              <small className="font-medium text-red-600">
-                {errors.agreement}
-              </small>
-            </div>
-            <InputGroup
-              type="email"
-              className="mb-2"
-              value={email}
-              setValue={setEmail}
-              placeholder="EMAIL"
-              error={errors.email}
-            />
             <InputGroup
               type="text"
               className="mb-2"
@@ -91,13 +65,13 @@ export default function Home() {
             />
 
             <button className="w-full py-2 mb-4 text-xs font-bold text-white uppercase bg-blue-500 border rounded border-blue 500">
-              Sign Up
+              Login
             </button>
           </form>
           <small>
-            Already a member?
-            <Link href="/login">
-              <a className="ml-1 uppercase text-blue">Log In</a>
+            Are you new?
+            <Link href="/register">
+              <a className="ml-1 uppercase text-blue">Sign Up</a>
             </Link>
           </small>
         </div>
