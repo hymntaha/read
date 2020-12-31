@@ -10,27 +10,21 @@ import classNames from "classnames";
 import InputGroup from "../components/InputGroup";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [agreement, setAgreement] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
   const router = useRouter();
   const submitForm = async (event: FormEvent) => {
     event.preventDefault();
-    if (!agreement) {
-      setErrors({ ...errors, agreement: "You must agree to T&Cs" });
-      return;
-    }
+
     try {
-      await Axios.post("/auth/register", {
-        email,
+      await Axios.post("/auth/login", {
         username,
         password,
       });
 
-      router.push("/login");
+      router.push("/");
     } catch (error) {
       setErrors(error.response.data);
     }
@@ -38,8 +32,7 @@ export default function Home() {
   return (
     <div className="flex">
       <Head>
-        <title>Register</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Login</title>
       </Head>
 
       <div

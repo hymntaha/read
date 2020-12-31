@@ -39,7 +39,6 @@ export default function Home() {
     <div className="flex">
       <Head>
         <title>Register</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div
