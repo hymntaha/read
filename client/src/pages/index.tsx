@@ -7,6 +7,7 @@ export default function Home() {
       <Head>
         <title>tacotaco: the front page of the internet</title>
       </Head>
+      div.fixed.inset-x-0.top-0.z-10
     </div>
   );
 }
