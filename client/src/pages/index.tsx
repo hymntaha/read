@@ -17,6 +17,9 @@ export default function Home() {
               <TacotacoLogo className="w-8 h-8 mr-2" />
             </a>
           </Link>
+          <span className="text-2xl font-semibold">
+            <Link href="/">tacotaco</Link>
+          </span>
         </div>
       </div>
     </div>
