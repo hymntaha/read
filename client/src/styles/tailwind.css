@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply inline-block text-xs font-bold text-center uppercase border rounded;
+  }
+}
