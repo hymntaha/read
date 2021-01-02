@@ -28,6 +28,14 @@ export default function Home() {
             className="py-1 pr-3 bg-transparent rounded w-160 focus:outline-none"
           />
         </div>
+        <div className="flex">
+          <Link href="/login">
+            <a className="holllow blue botton">log in</a>
+          </Link>
+          <Link href="/register">
+            <a className=" blue botton">sign up</a>
+          </Link>
+        </div>
       </div>
     </div>
   );
