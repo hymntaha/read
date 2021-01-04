@@ -2,7 +2,9 @@ import Head from "next/head";
 
 import { useEffect, useState } from "react";
 import Axios from "axios";
+
 import { Post } from "../types";
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
@@ -20,7 +22,14 @@ export default function Home() {
       <div className="container flex pt-4">
         <div className="w-160">
           {posts.map((post) => (
-            <div key={post.identifier}></div>
+            <div key={post.identifier} className="flex mb-4 bg-white rounded">
+              <div className="w-10 text-center bg-gray-200 rounded-l">
+                <p>V</p>
+              </div>
+              <div className="w-full p-2">
+                <p>{post.body}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
