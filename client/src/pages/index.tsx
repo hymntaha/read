@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import Axios from "axios";
@@ -27,7 +28,14 @@ export default function Home() {
                 <p>V</p>
               </div>
               <div className="w-full p-2">
-                <p>{post.body}</p>
+                <div className="flex items-center">
+                  <Link href={`/r/${post.subName}`}>
+                    <img
+                      src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                      className="w-6 h-6 mr-1 rounded-full cursor-pointer"
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
