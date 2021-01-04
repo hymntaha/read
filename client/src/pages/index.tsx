@@ -2,9 +2,10 @@ import Head from "next/head";
 
 import { useEffect, useState } from "react";
 import Axios from "axios";
-
+import { Post } from "../types";
 export default function Home() {
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     Axios.get("/posts")
       .then((res) => setPosts(res.data))
