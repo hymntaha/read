@@ -6,4 +6,8 @@ export interface Post {
   subName: string;
   createdAt: string;
   updatedAd: string;
+
+  //virtual fields
+  url: string;
+  username: string;
 }
