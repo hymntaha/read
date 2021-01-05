@@ -4,7 +4,10 @@ import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import Axios from "axios";
 
+import dayjs from "dayjs";
 import { Post } from "../types";
+
+import relativeTime from "dayjs/plugin/relativeTime";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
