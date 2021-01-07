@@ -76,7 +76,7 @@ export default function Home() {
                     </a>
                   </Link>
                   <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
-                    <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+                    <i className="mr-1 fas fa-bookmark-alt fa-xs"></i>
                     <span className="font-bold">Share</span>
                   </div>
                   <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
