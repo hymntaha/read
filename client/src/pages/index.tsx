@@ -8,18 +8,17 @@ import dayjs from "dayjs";
 import { Post } from "../types";
 
 import relativeTime from "dayjs/plugin/relativeTime";
-import { GetServerSideProps } from "next";
 
 dayjs.extend(relativeTime);
 
-export default function Home({ posts }) {
-  // const [posts, setPosts] = useState([]);
+export default function Home() {
+  const [posts, setPosts] = useState([]);
 
-  // useEffect(() => {
-  //   Axios.get("/posts")
-  //     .then((res) => setPosts(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    Axios.get("/posts")
+      .then((res) => setPosts(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="pt-12">
@@ -93,13 +92,3 @@ export default function Home({ posts }) {
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const res = await Axios.get("/posts");
-
-    return { props: { posts: res.data } };
-  } catch (error) {
-    return { props: { error: "Something went wrong" } };
-  }
-};
