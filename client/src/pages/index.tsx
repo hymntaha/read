@@ -60,6 +60,11 @@ export default function Home() {
                     </Link>
                   </p>
                 </div>
+                <Link href={post.url}>
+                  <a href="" className="my-1 text-lg font-medium">
+                    {post.title}
+                  </a>
+                </Link>
               </div>
             </div>
           ))}
