@@ -71,10 +71,18 @@ export default function Home() {
                     <a>
                       <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
                         <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                        <span>20 comments</span>
+                        <span className="font-bold">20 comments</span>
                       </div>
                     </a>
                   </Link>
+                  <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+                    <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+                    <span className="font-bold">Share</span>
+                  </div>
+                  <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+                    <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+                    <span className="font-bold">Save</span>
+                  </div>
                 </div>
               </div>
             </div>
