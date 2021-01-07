@@ -65,6 +65,17 @@ export default function Home() {
                     {post.title}
                   </a>
                 </Link>
+                {post.body && <p className="my-1 text-sm">{post.body}</p>}
+                <div className="flex">
+                  <Link href={post.url}>
+                    <a>
+                      <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+                        <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+                        <span>20 comments</span>
+                      </div>
+                    </a>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
