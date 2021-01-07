@@ -8,17 +8,18 @@ import dayjs from "dayjs";
 import { Post } from "../types";
 
 import relativeTime from "dayjs/plugin/relativeTime";
+import { GetServerSideProps } from "next";
 
 dayjs.extend(relativeTime);
 
-export default function Home() {
-  const [posts, setPosts] = useState([]);
+export default function Home({ posts }) {
+  // const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    Axios.get("/posts")
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("/posts")
+  //     .then((res) => setPosts(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <div className="pt-12">
@@ -80,7 +81,7 @@ export default function Home() {
                     <span className="font-bold">Share</span>
                   </div>
                   <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
-                    <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+                    <i className="mr-1 fas fa-share-alt fa-xs"></i>
                     <span className="font-bold">Save</span>
                   </div>
                 </div>
@@ -92,3 +93,13 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    const res = await Axios.get("/posts");
+
+    return { props: { posts: res.data } };
+  } catch (error) {
+    return { props: { error: "Something went wrong" } };
+  }
+};
