@@ -29,6 +29,31 @@ const vote = async (req: Request, res: Response) => {
       // else find vote by post
       vote = await Vote.findOne({ user, post });
     }
+
+    if (!vote && value === 0) {
+      // if no vote and value = 0 return error
+      return res.status(404).json({ error: "Vote not found" });
+    } else if (!vote) {
+      // if no vote create it
+      vote = new Vote({ user, value });
+      if (comment) vote.comment = comment;
+      else vote.post = post;
+      await vote.save();
+    } else if (value === 0) {
+      // if vote exists and value = 0, remove vote from DB
+      await vote.remove();
+    } else if (vote.value !== value) {
+      // if vote and value has changed, update vote
+      vote.value = value;
+      await vote.save();
+    }
+
+    post = await Post.findOneOrFail(
+      { identifier, slug },
+      { relations: ["comments", "sub", "votes"] }
+    );
+
+    return res.json(post);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
