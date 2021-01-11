@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { Post } from "../types";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 interface PostCardProps {
   post: Post;
