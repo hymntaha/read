@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { Post } from "../types";
 
 import relativeTime from "dayjs/plugin/relativeTime";
+import PostCard from "../components/PostCard";
 
 dayjs.extend(relativeTime);
 
@@ -28,7 +29,7 @@ export default function Home() {
       <div className="container flex pt-4">
         <div className="w-160">
           {posts.map((post) => (
-            
+            <PostCard post={post} key={post.identifier} />
           ))}
         </div>
       </div>

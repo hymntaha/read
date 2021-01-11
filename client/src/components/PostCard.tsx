@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { Post } from "../types";
@@ -7,6 +7,16 @@ import relativeTime from "dayjs/plugin/relativeTime";
 interface PostCardProps {
   post: Post;
 }
+
+dayjs.extend(relativeTime);
+
+const ActionButton = ({ children }) => {
+  return (
+    <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+      {children}
+    </div>
+  );
+};
 
 export default function PostCard({ post }) {
   return (
@@ -51,20 +61,23 @@ export default function PostCard({ post }) {
         <div className="flex">
           <Link href={post.url}>
             <a>
-              <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+              <ActionButton>
+                {" "}
                 <i className="mr-1 fas fa-comment-alt fa-xs"></i>
                 <span className="font-bold">20 comments</span>
-              </div>
+              </ActionButton>
             </a>
           </Link>
-          <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+          <ActionButton>
+            {" "}
             <i className="mr-1 fas fa-bookmark-alt fa-xs"></i>
             <span className="font-bold">Share</span>
-          </div>
-          <div className="px-1 py-1 mr-2 text-gray-500 rounded cursor-pointer hover:bg-gray-200">
+          </ActionButton>
+          <ActionButton>
+            {" "}
             <i className="mr-1 fas fa-share-alt fa-xs"></i>
             <span className="font-bold">Save</span>
-          </div>
+          </ActionButton>
         </div>
       </div>
     </div>
