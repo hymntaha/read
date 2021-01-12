@@ -22,7 +22,12 @@ export default function PostCard({ post }) {
   return (
     <div key={post.identifier} className="flex mb-4 bg-white rounded">
       <div className="w-10 text-center bg-gray-200 rounded-l">
-        <p>V</p>
+        <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
+          <i className="icon-arrow-up"></i>
+        </div>
+        <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
+          <i className="icon-arrow-down"></i>
+        </div>
       </div>
       <div className="w-full p-2">
         <div className="flex items-center">
