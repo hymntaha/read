@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Axios from "axios";
 
 import "../styles/tailwind.css";
+import "../styles/icons.css";
 
 import Navbar from "../components/Navbar";
 
