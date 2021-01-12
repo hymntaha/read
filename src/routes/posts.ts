@@ -31,6 +31,7 @@ const getPosts = async (_: Request, res: Response) => {
   try {
     const posts = await Post.find({
       order: { createdAt: "DESC" },
+      relations: ["comments", "votes", "sub"],
     });
 
     return res.json(posts);
