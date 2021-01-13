@@ -18,13 +18,14 @@ const ActionButton = ({ children }) => {
   );
 };
 
-export default function PostCard({ post }) {
+export default function PostCard({ post }: PostCardProps) {
   return (
     <div key={post.identifier} className="flex mb-4 bg-white rounded">
       <div className="w-10 py-3 text-center bg-gray-200 rounded-l">
         <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
           <i className="icon-arrow-up"></i>
         </div>
+        <p>{post.voteScore}</p>
         <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
           <i className="icon-arrow-down"></i>
         </div>
@@ -69,7 +70,7 @@ export default function PostCard({ post }) {
               <ActionButton>
                 {" "}
                 <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                <span className="font-bold">20 comments</span>
+                <span className="font-bold">{post.commentCount}</span>
               </ActionButton>
             </a>
           </Link>
