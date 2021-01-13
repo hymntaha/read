@@ -1,9 +1,11 @@
 import { Fragment } from "react";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { Post } from "../types";
 import relativeTime from "dayjs/plugin/relativeTime";
+import classNames from "classnames";
+
 import Axios from "axios";
+import { Post } from "../types";
 
 interface PostCardProps {
   post: Post;
@@ -53,14 +55,22 @@ export default function PostCard({
           className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500"
           onClick={() => vote(1)}
         >
-          <i className="icon-arrow-up"></i>
+          <i
+            className={classNames("icon-arrow-up", {
+              "text-red-500": userVote === 1,
+            })}
+          ></i>
         </div>
         <p className="text-xs font-bold">{voteScore}</p>
         <div
           className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500"
           onClick={() => vote(-1)}
         >
-          <i className="icon-arrow-down"></i>
+          <i
+            className={classNames("icon-arrow-down", {
+              "text-blue-600": userVote === -1,
+            })}
+          ></i>
         </div>
       </div>
       <div className="w-full p-2">
