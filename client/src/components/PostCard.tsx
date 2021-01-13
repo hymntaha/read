@@ -25,7 +25,7 @@ export default function PostCard({ post }: PostCardProps) {
         <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
           <i className="icon-arrow-up"></i>
         </div>
-        <p>{post.voteScore}</p>
+        <p className="text-xs font-bold">{post.voteScore}</p>
         <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
           <i className="icon-arrow-down"></i>
         </div>
