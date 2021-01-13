@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { Post } from "../types";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Axios from "axios";
 
 interface PostCardProps {
   post: Post;
@@ -18,21 +19,42 @@ const ActionButton = ({ children }) => {
   );
 };
 
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({
+  post: {
+    identifier,
+    slug,
+    title,
+    body,
+    subName,
+    createdAt,
+    voteScore,
+    userVote,
+    commentCount,
+    url,
+    username,
+  },
+}: PostCardProps) {
+  const vote = async (value) => {
+    try {
+      const res = await Axios.post("/misc/vote", {
+        identifier: identifier,
+      });
+    } catch (err) {}
+  };
   return (
-    <div key={post.identifier} className="flex mb-4 bg-white rounded">
+    <div key={identifier} className="flex mb-4 bg-white rounded">
       <div className="w-10 py-3 text-center bg-gray-200 rounded-l">
         <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
           <i className="icon-arrow-up"></i>
         </div>
-        <p className="text-xs font-bold">{post.voteScore}</p>
+        <p className="text-xs font-bold">{voteScore}</p>
         <div className="w-6 text-gray-400 rounded max-auto courser-pointer hover:bg-gray-300 hover:text-red-500">
           <i className="icon-arrow-down"></i>
         </div>
       </div>
       <div className="w-full p-2">
         <div className="flex items-center">
-          <Link href={`/r/${post.subName}`}>
+          <Link href={`/r/${subName}`}>
             <Fragment>
               <img
                 src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
@@ -40,37 +62,37 @@ export default function PostCard({ post }: PostCardProps) {
               />
 
               <a className="text-xs font-bold cursor-pointer hover:underline">
-                /r/${post.subName}
+                /r/${subName}
               </a>
             </Fragment>
           </Link>
           <p className="text-xs text-gray-500">
             <span className="mx-1">•</span>Posted by
-            <Link href={`/u/${post.username}`}>
+            <Link href={`/u/${username}`}>
               <a href="" className="mx-1 hover:underline">
-                /u/{post.username}
+                /u/{username}
               </a>
             </Link>
-            <Link href={post.url}>
+            <Link href={url}>
               <a href="" className="mx-1 hover:underline">
-                {dayjs(post.createdAt).fromNow()}
+                {dayjs(createdAt).fromNow()}
               </a>
             </Link>
           </p>
         </div>
-        <Link href={post.url}>
+        <Link href={url}>
           <a href="" className="my-1 text-lg font-medium">
-            {post.title}
+            {title}
           </a>
         </Link>
-        {post.body && <p className="my-1 text-sm">{post.body}</p>}
+        {body && <p className="my-1 text-sm">{body}</p>}
         <div className="flex">
-          <Link href={post.url}>
+          <Link href={url}>
             <a>
               <ActionButton>
                 {" "}
                 <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                <span className="font-bold">{post.commentCount}</span>
+                <span className="font-bold">{commentCount}</span>
               </ActionButton>
             </a>
           </Link>
