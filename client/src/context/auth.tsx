@@ -1,4 +1,3 @@
-import { triggerAsyncId } from "async_hooks";
 import { createContext, useContext, useReducer } from "react";
 import { User } from "../types";
 
@@ -24,7 +23,7 @@ const reducer = (state: State, { type, payload }: Action) => {
     case "LOGIN":
       return {
         ...state,
-        authenticated: triggerAsyncId,
+        authenticated: true,
         user: payload,
       };
 
