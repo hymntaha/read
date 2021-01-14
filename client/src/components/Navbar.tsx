@@ -3,10 +3,18 @@ import Link from "next/link";
 import { useAuthState, useAuthDispatch } from "../context/auth";
 
 import TacotacoLogo from "../images/reddit.svg";
+import Axios from "axios";
 
 const Navbar: React.FC = () => {
   const { authenticated } = useAuthState();
+  const dispatch = useAuthDispatch();
 
+  const logout = () => {
+    Axios.get("/auth/logout").then(() => {
+      dispatch({ type: "LOGOUT" });
+      window.location.reload();
+    });
+  };
   return (
     <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-center h-12 px-5 bg-white">
       <div className="flex items-center">
@@ -29,7 +37,10 @@ const Navbar: React.FC = () => {
       </div>
       <div className="flex">
         {authenticated ? (
-          <button className="w-32 py-1 mr-4 leading-5 holllow blue botton">
+          <button
+            className="w-32 py-1 mr-4 leading-5 holllow blue botton"
+            onClick={logout}
+          >
             logout
           </button>
         ) : (
