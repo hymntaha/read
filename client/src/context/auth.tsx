@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         console.log(err);
       }
     }
+    loadUser();
   });
 
   return (
