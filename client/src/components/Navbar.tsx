@@ -10,10 +10,12 @@ const Navbar: React.FC = () => {
   const dispatch = useAuthDispatch();
 
   const logout = () => {
-    Axios.get("/auth/logout").then(() => {
-      dispatch({ type: "LOGOUT" });
-      window.location.reload();
-    });
+    Axios.get("/auth/logout")
+      .then(() => {
+        dispatch({ type: "LOGOUT" });
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-center h-12 px-5 bg-white">
