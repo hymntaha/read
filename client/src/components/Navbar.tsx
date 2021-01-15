@@ -6,7 +6,7 @@ import TacotacoLogo from "../images/reddit.svg";
 import Axios from "axios";
 
 const Navbar: React.FC = () => {
-  const { authenticated } = useAuthState();
+  const { authenticated, loading } = useAuthState();
   const dispatch = useAuthDispatch();
 
   const logout = () => {
@@ -38,25 +38,26 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div className="flex">
-        {authenticated ? (
-          <button
-            className="w-32 py-1 mr-4 leading-5 holllow blue botton"
-            onClick={logout}
-          >
-            logout
-          </button>
-        ) : (
-          <Fragment>
-            <Link href="/login">
-              <a className="w-32 py-1 mr-4 leading-5 holllow blue botton">
-                log in
-              </a>
-            </Link>
-            <Link href="/register">
-              <a className="w-32 py-1 leading-5 blue botton">sign up</a>
-            </Link>
-          </Fragment>
-        )}
+        {loading &&
+          (authenticated ? (
+            <button
+              className="w-32 py-1 mr-4 leading-5 holllow blue botton"
+              onClick={logout}
+            >
+              logout
+            </button>
+          ) : (
+            <Fragment>
+              <Link href="/login">
+                <a className="w-32 py-1 mr-4 leading-5 holllow blue botton">
+                  log in
+                </a>
+              </Link>
+              <Link href="/register">
+                <a className="w-32 py-1 leading-5 blue botton">sign up</a>
+              </Link>
+            </Fragment>
+          ))}
       </div>
     </div>
   );
