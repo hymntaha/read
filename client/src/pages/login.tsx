@@ -17,13 +17,13 @@ export default function Home() {
   const [errors, setErrors] = useState<any>({});
 
   const dispatch = useAuthDispatch();
-  const {authenticated} = useAuthState();
+  const { authenticated } = useAuthState();
 
   const router = useRouter();
 
-  if(authenticated) router.push('/');
-  
-  const submitForm  = async (event: FormEvent) => {
+  if (authenticated) router.push("/");
+
+  const submitForm = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
@@ -32,7 +32,7 @@ export default function Home() {
         password,
       });
 
-      dispatch({ type: "LOGIN", res.data });
+      dispatch("LOGIN", res.data);
 
       router.push("/");
     } catch (error) {
