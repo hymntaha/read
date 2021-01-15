@@ -28,7 +28,7 @@ export default function Home() {
         password,
       });
 
-      dispatch({ type: "LOGIN", payload: res.data });
+      dispatch({ type: "LOGIN", res.data });
 
       router.push("/");
     } catch (error) {
