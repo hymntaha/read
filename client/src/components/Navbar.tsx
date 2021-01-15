@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div className="flex">
-        {loading &&
+        {!loading &&
           (authenticated ? (
             <button
               className="w-32 py-1 mr-4 leading-5 holllow blue botton"

@@ -17,9 +17,13 @@ export default function Home() {
   const [errors, setErrors] = useState<any>({});
 
   const dispatch = useAuthDispatch();
+  const {authenticated} = useAuthDispatch();
 
   const router = useRouter();
-  const submitForm = async (event: FormEvent) => {
+
+  if(authenticated) router.push('/');
+  
+  const submitForm  = async (event: FormEvent) => {
     event.preventDefault();
 
     try {

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 
 import classNames from "classnames";
 import InputGroup from "../components/InputGroup";
+import { useAuthState } from "../context/auth";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -16,7 +17,11 @@ export default function Home() {
   const [agreement, setAgreement] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
+  const { authenticated } = useAuthState();
+
   const router = useRouter();
+
+  if (authenticated) router.push("/");
   const submitForm = async (event: FormEvent) => {
     event.preventDefault();
     if (!agreement) {
