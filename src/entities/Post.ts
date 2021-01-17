@@ -7,15 +7,14 @@ import {
   JoinColumn,
   OneToMany,
 } from "typeorm";
-
-import { makeId, slugify } from "../util/helper";
-import Comment from "./Comment";
 import { Exclude, Expose } from "class-transformer";
 
 import Entity from "./Entity";
 import User from "./User";
-import Vote from "./Vote";
+import { makeId, slugify } from "../util/helper";
 import Sub from "./Sub";
+import Comment from "./Comment";
+import Vote from "./Vote";
 
 @TOEntity("posts")
 export default class Post extends Entity {
@@ -26,7 +25,7 @@ export default class Post extends Entity {
 
   @Index()
   @Column()
-  identifier: string; // 7 character Id
+  identifier: string; // 7 Character Id
 
   @Column()
   title: string;
@@ -56,6 +55,10 @@ export default class Post extends Entity {
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
 
+  @Exclude()
+  @OneToMany(() => Vote, (vote) => vote.post)
+  votes: Vote[];
+
   @Expose() get url(): string {
     return `/r/${this.subName}/${this.identifier}/${this.slug}`;
   }
@@ -67,10 +70,6 @@ export default class Post extends Entity {
   @Expose() get voteScore(): number {
     return this.votes?.reduce((prev, curr) => prev + (curr.value || 0), 0);
   }
-
-  @Exclude()
-  @OneToMany(() => Vote, (vote) => vote.comment)
-  votes: Vote[];
 
   protected userVote: number;
   setUserVote(user: User) {

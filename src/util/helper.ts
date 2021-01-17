@@ -3,14 +3,13 @@ export function makeId(length: number): string {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const charactersLength = characters.length;
-
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
-
   return result;
 }
 
+// https://gist.github.com/codeguy/6684588#gistcomment-2759673
 export function slugify(str: string): string {
   str = str.trim();
   str = str.toLowerCase();

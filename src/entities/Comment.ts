@@ -1,4 +1,3 @@
-import { Exclude } from "class-transformer";
 import {
   BeforeInsert,
   Column,
@@ -8,11 +7,14 @@ import {
   ManyToOne,
   OneToMany,
 } from "typeorm";
-import { makeId } from "../util/helper";
+
 import Entity from "./Entity";
 import Post from "./Post";
 import User from "./User";
+
+import { makeId } from "../util/helper";
 import Vote from "./Vote";
+import { Exclude } from "class-transformer";
 
 @TOEntity("comments")
 export default class Comment extends Entity {

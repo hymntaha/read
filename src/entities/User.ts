@@ -1,3 +1,4 @@
+import { IsEmail, Length } from "class-validator";
 import {
   Entity as TOEntity,
   Column,
@@ -5,10 +6,9 @@ import {
   BeforeInsert,
   OneToMany,
 } from "typeorm";
-
-import { IsEmail, Length } from "class-validator";
 import bcrypt from "bcrypt";
 import { Exclude } from "class-transformer";
+
 import Entity from "./Entity";
 import Post from "./Post";
 import Vote from "./Vote";
@@ -21,8 +21,8 @@ export default class User extends Entity {
   }
 
   @Index()
-  @Length(1, 255, { message: "Email is empty" })
   @IsEmail(undefined, { message: "Must be a valid email address" })
+  @Length(1, 255, { message: "Email is empty" })
   @Column({ unique: true })
   email: string;
 
