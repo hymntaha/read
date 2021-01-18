@@ -1,9 +1,23 @@
 import { useRouter } from "next/router";
+import useSWR from "swr";
+import PostCard from "../../components/PostCard";
 
 export default function Sub() {
   const router = useRouter();
 
-  console.log(router.query);
+  const subName = router.query.sub;
 
-  return <h1 className="text-5xl">{router.query.sub}</h1>;
+  const { data: sub } = useSWR(subName ? `/subs/${subName}` : null);
+
+  return (
+    <div className="container flex pt-5">
+      {sub && (
+        <div className="w-160">
+          {sub.posts.map((post) => (
+            <PostCard key={post.identifier} post={post} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
