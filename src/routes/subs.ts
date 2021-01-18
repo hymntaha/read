@@ -6,6 +6,7 @@ import User from "../entities/User";
 import auth from "../middleware/auth";
 import Sub from "../entities/Sub";
 import user from "../middleware/user";
+import Post from "../entities/Post";
 
 const createSub = async (req: Request, res: Response) => {
   const { name, title, description } = req.body;
@@ -43,8 +44,27 @@ const createSub = async (req: Request, res: Response) => {
   }
 };
 
+const getSub = async (req: Request, res: Response) => {
+  const name = req.params.name;
+
+  try {
+    const sub = await Sub.findOneOrFail({ name });
+    const posts = await Post.find({
+      where: { sub },
+      relations: ["comments", "votes"],
+    });
+
+    sub.posts = posts;
+
+    return res.json(sub);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ err: "Something went wrong" });
+  }
+};
+
 const router = Router();
 
 router.post("/", user, auth, createSub);
-
+router.get("/:name", user, getSub);
 export default router;
