@@ -17,7 +17,7 @@ export default function Home() {
   const { data: posts } = useSWR("/posts");
 
   return (
-    <div className="pt-12">
+    <Fragment>
       <Head>
         <title>tacotaco: the front page of the internet</title>
       </Head>
@@ -28,6 +28,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
