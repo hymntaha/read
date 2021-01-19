@@ -9,7 +9,8 @@ export default function Sub() {
 
   const { data: sub, error } = useSWR(subName ? `/subs/${subName}` : null);
 
-  if (error) console.log(error);
+  if (error) router.push("/");
+
   let postsMarkup;
 
   if (!sub) {
@@ -29,3 +30,15 @@ export default function Sub() {
     </div>
   );
 }
+
+/*
+Buyuk sirketlerede calisabilmek icin sahip olmaniz yetenekler:
+
+0) Yeni teknolojilere merakli olmak
+1) Yazilan kodu ve mimariyi sorgulamak
+2) En ufak veri ve performans optimizasyonunu bile kar oldugunu dusunmek
+3) Yazilan kodun daha iyi bir sekilde her zaman yazilabilecegini bilmek
+4) Mimari ile ilgili buyuk sirketlerin nasil bir strateji izledigini bilmek, olceklendirme ve high availability sorunlarini nasil cozdukleri hakkinda bilgi sahibi olabilmek
+5) CS fundementallari
+
+*/
