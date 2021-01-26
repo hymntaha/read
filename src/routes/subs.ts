@@ -80,8 +80,12 @@ const upload = multer({
       callback(null, name + path.extname(file.originalname) ) 
     }
   })
-  fileFilter: (_, file, callback) => {
-
+  fileFilter: (_, file:any, callback: FileFilterCallback) => {
+    if(file.mimetype== 'image/jpeg' || file.mimetype == 'image/png'){
+      callback(null, true)
+    } else {
+      callback(null, false)
+    }
   }
 });
 
@@ -91,5 +95,5 @@ const router = Router();
 
 router.post("/", user, auth, createSub);
 router.get("/:name", user, getSub);
-router.post("/:name/image", user, auth, uploadSubImage);
+router.post("/:name/image", user, auth, upload.single('file'), uploadSubImage);
 export default router;
