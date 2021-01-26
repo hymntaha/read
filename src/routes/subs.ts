@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import { isEmpty } from "class-validator";
 import { getRepository } from "typeorm";
 
-import multer from "multer";
+import multer, { FileFilterCallback } from "multer";
 import path from 'path'
 
 import User from "../entities/User";
@@ -73,7 +73,7 @@ const getSub = async (req: Request, res: Response) => {
 };
 
 const ownSub = async (req:Request, res: Response, next: NextFunction) => {
-  const user: User = req.locals.user
+  const user: User = res.locals.user
 
   try{
     const sub = await Sub.findOneOrFail({ where: {name: req.params.name}})
