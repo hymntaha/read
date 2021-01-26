@@ -72,6 +72,15 @@ const getSub = async (req: Request, res: Response) => {
   }
 };
 
+const ownSub = async (req:Request, res: Response, next: NextFunction) => {
+  const user: User = req.locals.user
+
+  try{
+    const sub = await Sub.findOneOrFail({ where: {name: req.params.name}})
+    if(sub.username !== user.username)
+  }
+}
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: 'public/images',
@@ -79,7 +88,7 @@ const upload = multer({
       const name = makeId(15)
       callback(null, name + path.extname(file.originalname) ) 
     }
-  })
+  }),
   fileFilter: (_, file:any, callback: FileFilterCallback) => {
     if(file.mimetype== 'image/jpeg' || file.mimetype == 'image/png'){
       callback(null, true)
@@ -97,5 +106,5 @@ const router = Router();
 
 router.post("/", user, auth, createSub);
 router.get("/:name", user, getSub);
-router.post("/:name/image", user, auth, upload.single('file'), uploadSubImage);
+router.post("/:name/image", user, auth, ownSub, upload.single('file'), uploadSubImage);
 export default router;
