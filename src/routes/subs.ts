@@ -100,7 +100,7 @@ const upload = multer({
     if(file.mimetype== 'image/jpeg' || file.mimetype == 'image/png'){
       callback(null, true)
     } else {
-      callback({file:'File not an image'})
+      callback(new Error('Not an image'))
     }
   }
 });
