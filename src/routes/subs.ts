@@ -84,7 +84,7 @@ const upload = multer({
     if(file.mimetype== 'image/jpeg' || file.mimetype == 'image/png'){
       callback(null, true)
     } else {
-      callback(null, false)
+      callback({file:'File not an image'})
     }
   }
 });
