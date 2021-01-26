@@ -3,12 +3,14 @@ import { isEmpty } from "class-validator";
 import { getRepository } from "typeorm";
 
 import multer from "multer";
+import path from 'path'
 
 import User from "../entities/User";
 import auth from "../middleware/auth";
 import Sub from "../entities/Sub";
 import user from "../middleware/user";
 import Post from "../entities/Post";
+import { makeId } from "../util/helper";
 
 const createSub = async (req: Request, res: Response) => {
   const { name, title, description } = req.body;
@@ -70,7 +72,15 @@ const getSub = async (req: Request, res: Response) => {
   }
 };
 
-const upload = multer({});
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: 'public/images',
+    filename:(req, file, callback) =>{
+      const name = makeId(15)
+      callback(null, )
+    }
+  })
+});
 
 const uploadSubImage = async (req: Request, res: Response) => {};
 
