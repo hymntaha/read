@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { isEmpty } from "class-validator";
 import { getRepository } from "typeorm";
 
@@ -106,6 +106,26 @@ const upload = multer({
 });
 
 const uploadSubImage = async (req: Request, res: Response) => {
+  const sub: Sub = res.locals.sub
+
+  try {
+    const type = req.body.type;
+    if(type !== 'image' && type !== 'banner'){
+      return res.status(400).json({error:'Invalid type'})
+    }
+
+    if (type === 'image'){
+      sub.imageUrn = req.file.filename
+    } else {
+      sub.bannerUrn = req.file.filename
+    }
+
+    await sub.save()
+    return res.json(sub)
+  } catch (error) {
+    return res.status(500).json({error:'Something went wrong'})
+    
+  }
   return res.json({sucess: true})
 };
 
