@@ -4,6 +4,7 @@ import { getRepository } from "typeorm";
 
 import multer, { FileFilterCallback } from "multer";
 import path from 'path'
+import fs from 'fs';
 
 import User from "../entities/User";
 import auth from "../middleware/auth";
@@ -111,6 +112,7 @@ const uploadSubImage = async (req: Request, res: Response) => {
   try {
     const type = req.body.type;
     if(type !== 'image' && type !== 'banner'){
+      fs.unlinkSync(req.file.path)
       return res.status(400).json({error:'Invalid type'})
     }
 
