@@ -33,6 +33,7 @@ export default function Sub() {
       </Head>
       {sub && (
         <Fragment>
+          <div>div.bg-blue-500</div>
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
           </div>
