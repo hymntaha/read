@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import React, { Fragment } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
+import { Sub } from "../../types";
 
 export default function Sub() {
   const router = useRouter();
 
   const subName = router.query.sub;
 
-  const { data: sub, error } = useSWR(subName ? `/subs/${subName}` : null);
+  const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
 
   if (error) router.push("/");
 
@@ -33,7 +34,9 @@ export default function Sub() {
       </Head>
       {sub && (
         <Fragment>
-          <div>div.bg-blue-500</div>
+          <div>
+            <div className="bg-blue-500"></div>
+          </div>
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
           </div>
