@@ -1,4 +1,6 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
+import React, { Fragment } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
 
@@ -25,8 +27,17 @@ export default function Sub() {
     ));
   }
   return (
-    <div className="container flex pt-5">
-      {sub && <div className="w-160">{postsMarkup}</div>}
+    <div>
+      <Head>
+        <title>{sub?.title}</title>
+      </Head>
+      {sub && (
+        <Fragment>
+          <div className="container flex pt-5">
+            <div className="w-160">{postsMarkup}</div>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 }
