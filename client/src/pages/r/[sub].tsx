@@ -57,7 +57,7 @@ export default function SubPage() {
                 <Image
                   src={sub.imageUrl}
                   alt="Sub"
-                  className="rounde-full"
+                  className="rounded-full"
                   width={80}
                   height={80}
                 />
