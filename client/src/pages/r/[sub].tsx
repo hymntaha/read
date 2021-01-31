@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { Fragment } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
+import Image from "next/image";
 import { Sub } from "../../types";
 
 export default function SubPage() {
@@ -50,6 +51,17 @@ export default function SubPage() {
               ) : (
                 <div className="h-20 bg-blue-500"></div>
               )}
+            </div>
+            <div className="h-20 bg-white">
+              <div className="container flex">
+                <Image
+                  src={sub.imageUrl}
+                  alt="Sub"
+                  className="rounde-full"
+                  width={80}
+                  height={80}
+                />
+              </div>
             </div>
           </div>
           <div className="container flex pt-5">
