@@ -1,3 +1,4 @@
+import { isDivisibleBy } from "class-validator";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
@@ -5,7 +6,7 @@ import useSWR from "swr";
 import PostCard from "../../components/PostCard";
 import { Sub } from "../../types";
 
-export default function Sub() {
+export default function SubPage() {
   const router = useRouter();
 
   const subName = router.query.sub;
@@ -35,7 +36,21 @@ export default function Sub() {
       {sub && (
         <Fragment>
           <div>
-            <div className="bg-blue-500"></div>
+            <div className="bg-blue-500">
+              {sub.bannerUrl ? (
+                <div
+                  className="h-56 bg-blue-500"
+                  style={{
+                    backgroundImage: `url(${sub.bannerUrl})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+              ) : (
+                <div className="h-20 bg-blue-500"></div>
+              )}
+            </div>
           </div>
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
