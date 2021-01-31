@@ -53,14 +53,21 @@ export default function SubPage() {
               )}
             </div>
             <div className="h-20 bg-white">
-              <div className="container flex">
-                <Image
-                  src={sub.imageUrl}
-                  alt="Sub"
-                  className="rounded-full"
-                  width={80}
-                  height={80}
-                />
+              <div className="container relative flex">
+                <div className="absolute" style={{ top: -10 }}>
+                  <Image
+                    src={sub.imageUrl}
+                    alt="Sub"
+                    className="rounded-full"
+                    width={80}
+                    height={80}
+                  />
+                </div>
+
+                <div className="pt-2 pl-16">
+                  <h1 className="mb-1 text-2xl font-bold">{sub.title}</h1>
+                </div>
+                <p className="text-sm text-gray-600">/r/{sub.name}</p>
               </div>
             </div>
           </div>
