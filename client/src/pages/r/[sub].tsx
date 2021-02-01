@@ -1,7 +1,7 @@
 import { isDivisibleBy } from "class-validator";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
+import { createRef, Fragment } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { Sub } from "../../types";
 
 export default function SubPage() {
   const router = useRouter();
-
+  const fileInputRef = createRef<HTMLInputElement>();
   const subName = router.query.sub;
 
   const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
