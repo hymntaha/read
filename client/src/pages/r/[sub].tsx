@@ -36,6 +36,7 @@ export default function SubPage() {
       </Head>
       {sub && (
         <Fragment>
+          <input type="file" hidden={true} ref={fileInputRef} />
           <div>
             <div className="bg-blue-500">
               {sub.bannerUrl ? (
@@ -64,10 +65,10 @@ export default function SubPage() {
                   />
                 </div>
 
-                <div className="pt-2 pl-24">
+                <div className="pt-1 pl-24">
                   <h1 className="mb-1 text-2xl font-bold">{sub.title}</h1>
                 </div>
-                <p className="text-sm text-gray-600">/r/{sub.name}</p>
+                <p className="text-sm font-bold text-gray-500">/r/{sub.name}</p>
               </div>
             </div>
           </div>
