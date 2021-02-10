@@ -16,7 +16,9 @@ export default function SubPage() {
   const fileInputRef = createRef<HTMLInputElement>();
   const subName = router.query.sub;
 
-  const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
+  const { data: sub, error, revalidate } = useSWR<Sub>(
+    subName ? `/subs/${subName}` : null
+  );
 
   useEffect(() => {
     if (!sub) return;
@@ -51,9 +53,11 @@ export default function SubPage() {
     formData.append("type", fileInputRef.current.name);
 
     try {
-      const res = await Axios.post<Sub>(`/subs/${sub.name}/image`, formData, {
+      await Axios.post<Sub>(`/subs/${sub.name}/image`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+      revalidate();
     } catch (err) {
       console.log(err);
     }
