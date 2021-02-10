@@ -37,6 +37,12 @@ export default function SubPage() {
       <PostCard key={post.identifier} post={post} />
     ));
   }
+  const openFileInput = (type: string) => {
+    if (!ownSub) return;
+    fileInputRef.current.name = type;
+    fileInputRef.current.click();
+  };
+
   return (
     <div>
       <Head>
@@ -52,6 +58,7 @@ export default function SubPage() {
                   className={classNames("bg-blue-500", {
                     "cursor-pointer": ownSub,
                   })}
+                  onClick={() => openFileInput("banner")}
                   style={{
                     backgroundImage: `url(${sub.bannerUrl})`,
                     backgroundRepeat: "no-repeat",
@@ -72,6 +79,7 @@ export default function SubPage() {
                     className={classNames("rounded-full", {
                       "cursor-pointer": ownSub,
                     })}
+                    onClick={() => openFileInput("image")}
                     width={70}
                     height={70}
                   />
