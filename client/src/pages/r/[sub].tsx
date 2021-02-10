@@ -1,18 +1,26 @@
-import { isDivisibleBy } from "class-validator";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { createRef, Fragment } from "react";
+import { createRef, Fragment, useState } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
 import Image from "next/image";
+import classNames from "classnames";
 import { Sub } from "../../types";
+import { useAuthState } from "../../context/auth";
 
 export default function SubPage() {
+  const { authenticated, user } = useAuthState();
+  const [ownSub, setOwnSub] = useState(false);
   const router = useRouter();
   const fileInputRef = createRef<HTMLInputElement>();
   const subName = router.query.sub;
 
   const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
+
+  useEffect(() => {
+    if (!sub) return;
+    setOwnSub(authenticated && user.username === sub.username);
+  }, [sub]);
 
   if (error) router.push("/");
 
@@ -41,7 +49,9 @@ export default function SubPage() {
             <div className="bg-blue-500">
               {sub.bannerUrl ? (
                 <div
-                  className="h-56 bg-blue-500"
+                  className={classNames("bg-blue-500", {
+                    "cursor-pointer": ownSub,
+                  })}
                   style={{
                     backgroundImage: `url(${sub.bannerUrl})`,
                     backgroundRepeat: "no-repeat",
