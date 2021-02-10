@@ -7,6 +7,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import { Sub } from "../../types";
 import { useAuthState } from "../../context/auth";
+import Axios from "axios";
 
 export default function SubPage() {
   const { authenticated, user } = useAuthState();
@@ -43,6 +44,21 @@ export default function SubPage() {
     fileInputRef.current.click();
   };
 
+  const uploadImage = async (event: ChangeEvent<HTNMLInputElement>) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("type", fileInputRef.current.name);
+
+    try {
+      const res = await Axios.post<Sub>(`/subs/${sub.name}/image`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -50,7 +66,12 @@ export default function SubPage() {
       </Head>
       {sub && (
         <Fragment>
-          <input type="file" hidden={true} ref={fileInputRef} />
+          <input
+            type="file"
+            hidden={true}
+            ref={fileInputRef}
+            onChange={uploadImage}
+          />
           <div>
             <div className="bg-blue-500">
               {sub.bannerUrl ? (
