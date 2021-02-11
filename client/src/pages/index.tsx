@@ -34,7 +34,7 @@ export default function Home() {
                 key={sub.name}
                 className="flex items-center px-4 py-2 text-xs border-b"
               >
-                <div className="rounded-full overflow-hidden mr-2">
+                <div className="rounded-full overflow-hidden mr-2 cursor-pointer">
                   <Link href={`/r/${sub.name}`}>
                     <Image
                       src={sub.imageUrl}
