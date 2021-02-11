@@ -34,7 +34,7 @@ export default function Home() {
                 key={sub.name}
                 className="flex items-center px-4 py-2 text-xs border-b"
               >
-                <div className="rounded-full">
+                <div className="rounded-full overflow-hidden">
                   <Image
                     src={sub.imageUrl}
                     alt="Sub"
@@ -42,6 +42,12 @@ export default function Home() {
                     height={(6 * 16) / 4}
                   />
                 </div>
+                <Link href={`/r/${sub.name}`}>
+                  <a href="" className="font-bold hover:cursor-pointer">
+                    /r/${sub.name}
+                  </a>
+                </Link>
+                <p className="ml-auto font-med">{sub.postCount}</p>
               </div>
             ))}
           </div>
