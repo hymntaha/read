@@ -8,6 +8,7 @@ import Vote from "../entities/Vote";
 import auth from "../middleware/auth";
 import user from "../middleware/user";
 import { getConnection } from "typeorm";
+import Sub from "../entities/Sub";
 
 const vote = async (req: Request, res: Response) => {
   const { identifier, slug, commentIdentifier, value } = req.body;
