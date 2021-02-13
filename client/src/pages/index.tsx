@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Fragment } from "react";
 import useSWR from "swr";
+import Link from "next/link";
 
 import dayjs from "dayjs";
 import { Sub } from "../types";

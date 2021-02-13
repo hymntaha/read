@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { createRef, Fragment, useState, ChangeEvent } from "react";
+import { createRef, Fragment, useState, ChangeEvent, useEffect } from "react";
 import useSWR from "swr";
 import PostCard from "../../components/PostCard";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { Sub } from "../../types";
 import { useAuthState } from "../../context/auth";
 import Axios from "axios";
+import Sidebar from '../../components/Sidebar';
 
 export default function SubPage() {
   const { authenticated, user } = useAuthState();
@@ -119,6 +120,7 @@ export default function SubPage() {
           </div>
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
+            <Sidebar
           </div>
         </Fragment>
       )}
