@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 function Sidebar({ sub }: { sub: Sub }) {
   return (
     <div className="ml-6 w-80">
@@ -17,6 +19,10 @@ function Sidebar({ sub }: { sub: Sub }) {
               <p>online</p>
             </div>
           </div>
+          <p className="my-3">
+            <i className="fas fa-birthday-cake-mr-2"></i>Created{" "}
+            {dayjs(sub.createdAt).format("D MMM YYYY")}
+          </p>
         </div>
       </div>
     </div>
