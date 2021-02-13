@@ -1,5 +1,8 @@
 import dayjs from "dayjs";
 
+import { useAuthState } from "../context/auth";
+import { Sub } from "../types";
+
 function Sidebar({ sub }: { sub: Sub }) {
   return (
     <div className="ml-6 w-80">
